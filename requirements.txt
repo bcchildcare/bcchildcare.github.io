@@ -40,12 +40,15 @@ mdit-py-plugins==0.4.2
 mdurl==0.1.2
 menuinst @ file:///croot/menuinst_1706732933928/work
 narwhals==1.31.0
+numpy==2.2.6
 orjson==3.10.15
 packaging @ file:///croot/packaging_1710807400464/work
+pandas==2.2.3
 parso==0.8.4
 pexpect==4.9.0
 platformdirs @ file:///work/perseverance-python-buildout/croot/platformdirs_1701732573265/work
 pluggy @ file:///work/perseverance-python-buildout/croot/pluggy_1698805497733/work
+polars==1.30.0
 prompt-toolkit @ file:///home/conda/feedstock_root/build_artifacts/prompt-toolkit_1702399386289/work
 psygnal==0.12.0
 ptyprocess==0.7.0
@@ -53,9 +56,11 @@ pure_eval==0.2.3
 pycosat @ file:///work/perseverance-python-buildout/croot/pycosat_1698863456259/work
 pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
 Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1714846767233/work
+pyprojroot==0.3.0
 PySocks @ file:///work/perseverance-python-buildout/croot/pysocks_1698845478203/work
 python-dateutil==2.9.0.post0
 python-multipart==0.0.20
+pytz==2025.2
 questionary==2.1.0
 radian @ file:///home/conda/feedstock_root/build_artifacts/radian_1707330436045/work
 rchitect @ file:///home/conda/feedstock_root/build_artifacts/rchitect_1705561936787/work
@@ -72,6 +77,7 @@ tqdm @ file:///work/perseverance-python-buildout/croot/tqdm_1701735729845/work
 traitlets==5.14.3
 truststore @ file:///work/perseverance-python-buildout/croot/truststore_1701735771625/work
 typing_extensions==4.12.2
+tzdata==2025.2
 uc-micro-py==1.0.3
 urllib3 @ file:///croot/urllib3_1707770551213/work
 uvicorn==0.34.0
