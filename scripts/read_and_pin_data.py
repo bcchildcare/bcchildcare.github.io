@@ -8,21 +8,15 @@ data = pd.read_csv(csv_file_path)
 
 # get the latest date
 data_pl = pl.from_pandas(data)
-latest_date = (
-  data_pl.select(pl.col("VACANCY_LAST_UPDATE"))
-  .to_series()
-  .max()
+
+data_pl = data_pl.with_columns(
+    pl.col("VACANCY_LAST_UPDATE").str.to_date("%Y/%m/%d", strict=False)
 )
+
+latest_date = data_pl.select(pl.col("VACANCY_LAST_UPDATE")).to_series().max()
 
 # write data to board
 board = pins.board_folder(here("board"))
-board.pin_write(
-    data.head(),
-    "bcchildcare",
-    type="csv",
-    metadata={
-        "date": latest_date
-    }
-)
+board.pin_write(data.head(), "bcchildcare", type="csv", metadata={"date": latest_date})
 
 board.pin_meta("bcchildcare")
