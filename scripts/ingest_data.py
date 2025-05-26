@@ -1,7 +1,9 @@
+from pyprojroot.here import here
 import pandas as pd
+import polars as pl
 
 
-def ingest_data(file_path):
+def get_data_vacancy(file_path):
     """
     Ingests data from a CSV file into a Pandas DataFrame.
 
@@ -12,26 +14,23 @@ def ingest_data(file_path):
         pandas.DataFrame: A DataFrame containing the data from the CSV file,
                           or None if an error occurs.
     """
-    try:
-        df = pd.read_csv(file_path)
-        return df
-    except FileNotFoundError:
-        print(f"Error: File not found at '{file_path}'")
-        return None
-    except pd.errors.EmptyDataError:
-        print(f"Error: The file '{file_path}' is empty")
-        return None
-    except pd.errors.ParserError:
-        print(f"Error: Failed to parse CSV file '{file_path}'. Check the file format.")
-        return None
+    data = pl.read_csv(file_path)
+
+    # extract vacancy data
+    data_pl = data.select(pl.col("NAME"), pl.col("VACANCY_SRVC_30MOS_5YRS")).unpivot(
+        index=["NAME"], on="VACANCY_SRVC_30MOS_5YRS"
+    )
+    return data_pl
 
 
 if __name__ == "__main__":
-    from pyprojroot.here import here
+    csv_file_path = "https://catalogue.data.gov.bc.ca/dataset/4cc207cc-ff03-44f8-8c5f-415af5224646/resource/9a9f14e1-03ea-4a11-936a-6e77b15eeb39/download/childcare_locations.csv"
+    data = pl.read_csv(csv_file_path)
+    data
 
     csv_file_path = here("data/2025-05-24 childcare_locations.csv")
-    data = ingest_data(csv_file_path)
+    data = get_data_vacancy(csv_file_path)
 
     if data is not None:
-        print("Data ingested successfully:")
+        print("Vacancy data ingested successfully:")
         print(data)
