@@ -8,7 +8,6 @@ data = pd.read_csv(csv_file_path)
 
 # get the latest date
 data_pl = pl.from_pandas(data)
-data_pl.glimpse()
 latest_date = (
   data_pl.select(pl.col("VACANCY_LAST_UPDATE"))
   .to_series()
