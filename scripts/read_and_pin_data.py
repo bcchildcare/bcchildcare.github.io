@@ -23,8 +23,8 @@ def createPopup(row: dict):
     """
 
     tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
-    text = f'{row["NAME"]}<br>{row["NAME"]}<br>{row["PHONE"]}<br><br>'
-    text += "Vacancy:"
+    text = f'{row["NAME"]}<br>{row["SERVICE_TYPE_CD"]}<br>{row["PHONE"]}<br><br>'
+    text += "Vacancy:<br>"
     text += f"{tab}<36 months: {row['VACANCY_SRVC_UNDER36']}<br>"
     text += f"{tab}30 months -- 5 years: {row['VACANCY_SRVC_30MOS_5YRS']}<br>"
     text += f"{tab}Preschool: {row['VACANCY_SRVC_LICPRE']}<br>"
