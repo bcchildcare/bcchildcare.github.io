@@ -12,13 +12,12 @@ on:
      - cron: '41 15 * * *'  # trigger at 3:41 pm UTC (8:41 AM PST)
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.12
