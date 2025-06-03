@@ -19,7 +19,9 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+    
     - uses: actions/checkout@v4
+
     - name: Set up Python 3.12
       uses: actions/setup-python@v5
       with:
@@ -32,7 +34,8 @@ jobs:
     - name: Run py script to download and pin data
       run: |
         python scripts/read_and_pin_data.py
-     
+    
+        
     - name: Check if there are any changes
       id: verify_diff
       run: |
@@ -40,6 +43,23 @@ jobs:
         git config user.email github-actions@github.com
         git add -N .
         git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+
+    # If there are changes, the rest of the workflow is ran
+    - uses: r-lib/actions/setup-r@v2
+      if: steps.verify_diff.outputs.changed == 'true'
+
+    - name: Install packages
+      if: steps.verify_diff.outputs.changed == 'true'
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        packages: |
+          any::pins
+          any::here
+    - name: run R script to write board manifest
+      if: steps.verify_diff.outputs.changed == 'true'
+      run: |
+        Rscript scripts/write_board_manifest.R
+     
 
     - name: Commit and push
       if: steps.verify_diff.outputs.changed == 'true'
