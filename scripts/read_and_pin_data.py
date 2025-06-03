@@ -41,5 +41,5 @@ print("Created popup text")
 
 # write data to board
 board = pins.board_folder(here("board"))
-board.pin_write(data.head(), "bcchildcare", type="csv", metadata={"date": latest_date})
+board.pin_write(data_pl, "bcchildcare", type="csv", metadata={"date": latest_date})
 board.pin_meta("bcchildcare")
