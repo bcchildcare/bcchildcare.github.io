@@ -38,8 +38,10 @@ data_pl = data_pl.with_columns(
 )
 print("Created popup text")
 
+# convert to pandas df because polars popup column not supported by pins?
+data_pd = data_pl.to_pandas()
 
 # write data to board
 board = pins.board_folder(here("board"))
-board.pin_write(data_pl, "bcchildcare", type="csv", metadata={"date": latest_date})
+board.pin_write(data_pl.to_pandas() , "bcchildcare", type="csv", metadata={"date": latest_date})
 board.pin_meta("bcchildcare")
