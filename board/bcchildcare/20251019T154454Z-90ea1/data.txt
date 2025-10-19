@@ -1,0 +1,10 @@
+api_version: 1
+created: 20251019T154454Z
+description: null
+file: bcchildcare.csv
+file_size: 2911378
+pin_hash: 90ea10ac63311abd
+title: 'bcchildcare: a pinned 5860 x 48 DataFrame'
+type: csv
+user:
+  date: 2025-10-18
